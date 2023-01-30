@@ -57,25 +57,41 @@ app.delete('/users', (request, response) => {
 
 
 
-//----- Ticket Master Data Retrievel successful, still working on formatting
+//----- Ticket Master Data Retrieval Endpoint
 app.get('/tickets', async (request, response, next) => {
   try {
-    let zipcode = request.query.zipcode;
-    let url = `https://app.ticketmaster.com/discovery/v2/events/postalCode=${zipcode}.json?apikey=${API_KEY}`
+    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&apikey=${API_KEY}`
     let ticketsURL = await axios.get(url);
     console.log(ticketsURL.data);
+    response.status(200).send(ticketsURL.data);
+
   } catch (error) {
     console.log(error)
   }
 });
 
-//----- Ticket Master Data Retrievel successful, still working on formatting
-app.get('/tickets', async (request, response, next) => {
+//----- Location Search Endpoint
+app.get('/location', async (request, response, next) => {
   try {
-    let zipcode = request.query.zipcode;
-    let url = `https://app.ticketmaster.com/discovery/v2/events/postalCode=${zipcode}.json?apikey=${API_KEY}`
+    let stateCode = 'FL';
+    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=${stateCode}&apikey=${API_KEY}`
     let ticketsURL = await axios.get(url);
     console.log(ticketsURL.data);
+    response.status(200).send(ticketsURL.data);
+
+  } catch (error) {
+    console.log(error)
+  }
+});
+
+//----- Genre Search Endpoint
+app.get('/genre', async (request, response, next) => {
+  try {
+    let genre = 'punk';
+    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&keyword=${genre}&apikey=${API_KEY}`
+    let ticketsURL = await axios.get(url);
+    console.log(ticketsURL.data);
+    response.status(200).send(ticketsURL.data);
   } catch (error) {
     console.log(error)
   }
