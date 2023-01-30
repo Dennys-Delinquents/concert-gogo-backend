@@ -98,7 +98,7 @@ app.get('/genre', async (request, response, next) => {
 });
 
 app.get('*', (request, response) => {
-  response.status(404).send('Not availabe');
+  response.status(404).send('Not available');
 });
 
 // ERROR
