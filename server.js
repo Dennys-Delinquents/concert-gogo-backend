@@ -43,17 +43,15 @@ app.post('/users', (request, response) => {
   users.createUser(request, response);
 });
 
-app.get('/users', (request, response) => {
-  users.getUser(request, response);
+app.get('/users', (request, response, next) => {
+  users.getUser(request, response, next);
 });
 
-app.put('/users', (request, response) => {
+app.put('/users/:id', (request, response) => {
   users.updateUser(request, response);
 });
 
-app.delete('/users', (request, response) => {
-  users.deleteUser(request, response);
-});
+app.delete('/users/:id', users.deleteUser);
 
 
 

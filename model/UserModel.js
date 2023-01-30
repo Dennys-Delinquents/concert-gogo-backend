@@ -12,7 +12,6 @@ const userSchema = new Schema({
   searchHistory: { type: Array, required: false },
   events: { type: Array, required: false },
   isAdmin: { type: Boolean, required: false }
-  // comment
   
 });
 
