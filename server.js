@@ -34,25 +34,14 @@ app.use(express.json());
 
 const PORT = process.env.PORT;
 
-app.get('/', (request, response) => {
-  response.status(200).send('Welcome!');
-});
+app.get('/', (request, response) => response.status(200).send('Welcome!'));
+
 
 // **** User DB ENDPOINT
-app.post('/users', (request, response) => {
-  users.createUser(request, response);
-});
-
-app.get('/users', (request, response, next) => {
-  users.getUser(request, response, next);
-});
-
-app.put('/users/:id', (request, response) => {
-  users.updateUser(request, response);
-});
-
-app.delete('/users/:id', users.deleteUser);
-
+app.post('/users', (request, response, next) => users.createUser(request, response, next));
+app.get('/users', (request, response, next) => users.getUser(request, response, next));
+app.put('/users/:id', (request, response, next) => users.updateUser(request, response, next));
+app.delete('/users/:id', (request, response, next) => users.deleteUser(request, response, next));
 
 
 //----- Ticket Master Data Retrieval Endpoint
