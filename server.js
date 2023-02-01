@@ -59,7 +59,7 @@ app.delete('/users/:id', (request, response, next) => users.deleteUser(request, 
 // });
 
 //----- Location Search Endpoint
-app.get('/location', getEvents);
+app.get('/events', getEvents);
 
 
 //----- Genre Search Endpoint
