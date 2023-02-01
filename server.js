@@ -43,6 +43,8 @@ app.get('/users', (request, response, next) => users.getUser(request, response, 
 app.put('/users/:id', (request, response, next) => users.updateUser(request, response, next));
 app.delete('/users/:id', (request, response, next) => users.deleteUser(request, response, next));
 
+app.get('/user/:email', (request, response, next) => users.getOneUser(request, response, next));
+
 
 //----- Ticket Master Data Retrieval Endpoint
 app.get('/tickets', async (request, response, next) => {
