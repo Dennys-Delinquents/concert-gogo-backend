@@ -8,6 +8,7 @@ const axios = require('axios');
 const users = require('./modules/users');
 const events = require('./modules/events');
 const UserModel = require('./model/UserModel');
+const getEvents = require('./modules/events');
 
 // *** BRING IN MONGOOSE ***
 const mongoose = require('mongoose');
@@ -47,44 +48,34 @@ app.get('/user/:email', (request, response, next) => users.getOneUser(request, r
 
 
 //----- Ticket Master Data Retrieval Endpoint
-app.get('/tickets', async (request, response, next) => {
-  try {
-    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&apikey=${API_KEY}`
-    let ticketsURL = await axios.get(url);
-    console.log(ticketsURL.data);
-    response.status(200).send(ticketsURL.data);
+// app.get('/tickets', async (request, response, next) => {
+//   try {
+//     let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&apikey=${API_KEY}`
+//     let ticketsURL = await axios.get(url);
+//     console.log(ticketsURL.data);
+//     response.status(200).send(ticketsURL.data);
 
-  } catch (error) {
-    console.log(error)
-  }
-});
+//   } catch (error) {
+//     console.log(error)
+//   }
+// });
 
 //----- Location Search Endpoint
-app.get('/location', async (request, response, next) => {
-  try {
-    let stateCode = 'FL';
-    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=${stateCode}&apikey=${API_KEY}`
-    let ticketsURL = await axios.get(url);
-    console.log(ticketsURL.data);
-    response.status(200).send(ticketsURL.data);
+app.get('/events', getEvents);
 
-  } catch (error) {
-    console.log(error)
-  }
-});
 
 //----- Genre Search Endpoint
-app.get('/genre', async (request, response, next) => {
-  try {
-    let genre = 'punk';
-    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&keyword=${genre}&apikey=${API_KEY}`
-    let ticketsURL = await axios.get(url);
-    console.log(ticketsURL.data);
-    response.status(200).send(ticketsURL.data);
-  } catch (error) {
-    console.log(error)
-  }
-});
+// app.get('/genre', async (request, response, next) => {
+//   try {
+//     let genre = 'punk';
+//     let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&keyword=${genre}&apikey=${API_KEY}`
+//     let ticketsURL = await axios.get(url);
+//     console.log(ticketsURL.data);
+//     response.status(200).send(ticketsURL.data);
+//   } catch (error) {
+//     console.log(error)
+//   }
+// });
 
 app.get('*', (request, response) => {
   response.status(404).send('Not available');
