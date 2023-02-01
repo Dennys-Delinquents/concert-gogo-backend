@@ -10,8 +10,8 @@ const UserModel = require('./model/UserModel.js');
 async function seed() {
 
     await UserModel.create({
-        name: 'Joe Schmoe',
-        email: 'joe@somehere.com',
+        name: 'Mike Shen',
+        email: 'michael.m.shen@gmail.com',
         isAdmin: false 
     });
 

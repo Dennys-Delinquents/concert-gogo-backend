@@ -24,6 +24,18 @@ async function getUser(request, response, next) {
   }
 }
 
+async function getOneUser(request, response, next) {
+  try {
+    let userEmail = request.params.email;
+    let dbResult = await UserModel.findOne({email: userEmail});
+    response.status(200).send(dbResult);
+
+  } catch (error) {
+    console.log(error.message);
+    next(error);
+  }
+}
+
 async function updateUser(request, response, next) {
   try {
     let userId = request.params.id;
@@ -50,4 +62,4 @@ async function deleteUser(request, response, next) {
   }
 }
 
-module.exports = { createUser, getUser, updateUser, deleteUser };
+module.exports = { createUser, getUser, updateUser, deleteUser, getOneUser};
