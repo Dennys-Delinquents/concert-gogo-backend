@@ -1,11 +1,11 @@
 'use strict';
 const axios = require('axios');
 
-//! Still a work in Progress. Need to get stateCode replaced in url
 async function getEvents(request, response, next) {
   try {
-    // let location = request.query.location
-    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=WA&apikey=${process.env.API_KEY}`
+    let location = request.query.location
+    let keyword = request.query.keyword
+    let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=${location}&apikey=${process.env.API_KEY}&keyword=${keyword}`
     let locationDataFromAxios = await axios.get(url)
     let parsedLocationData = locationDataFromAxios.data._embedded.events;
     console.log(parsedLocationData);
