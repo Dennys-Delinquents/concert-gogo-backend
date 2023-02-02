@@ -46,36 +46,8 @@ app.delete('/users/:id', (request, response, next) => users.deleteUser(request, 
 
 app.get('/user/:email', (request, response, next) => users.getOneUser(request, response, next));
 
-
-//----- Ticket Master Data Retrieval Endpoint
-// app.get('/tickets', async (request, response, next) => {
-//   try {
-//     let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&apikey=${API_KEY}`
-//     let ticketsURL = await axios.get(url);
-//     console.log(ticketsURL.data);
-//     response.status(200).send(ticketsURL.data);
-
-//   } catch (error) {
-//     console.log(error)
-//   }
-// });
-
-//----- Location Search Endpoint
+//----- TicketMaster API Endpoint
 app.get('/events', getEvents);
-
-
-//----- Genre Search Endpoint
-// app.get('/genre', async (request, response, next) => {
-//   try {
-//     let genre = 'punk';
-//     let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&keyword=${genre}&apikey=${API_KEY}`
-//     let ticketsURL = await axios.get(url);
-//     console.log(ticketsURL.data);
-//     response.status(200).send(ticketsURL.data);
-//   } catch (error) {
-//     console.log(error)
-//   }
-// });
 
 app.get('*', (request, response) => {
   response.status(404).send('Not available');
