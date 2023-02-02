@@ -10,6 +10,7 @@ const events = require('./modules/events');
 const UserModel = require('./model/UserModel');
 const getEvents = require('./modules/events');
 const MailjetAPI = require('./modules/MailjetAPI');
+const NewsAPI = require('./modules/NewsAPI');
 
 // *** BRING IN MONGOOSE ***
 const mongoose = require('mongoose');
@@ -48,6 +49,7 @@ app.delete('/users/:id', (request, response, next) => users.deleteUser(request, 
 app.get('/user/:email', (request, response, next) => users.getOneUser(request, response, next));
 
 app.get('/MailjetAPI/', (request, response, next) => MailjetAPI.sendEmail(request, response, next));
+app.get('/NewsAPI', (request, response, next) => NewsAPI(request, response, next));
 
 //----- TicketMaster API Endpoint
 app.get('/events', getEvents);

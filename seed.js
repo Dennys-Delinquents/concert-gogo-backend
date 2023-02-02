@@ -8,28 +8,38 @@ mongoose.connect(process.env.DB_URL);
 const UserModel = require('./model/UserModel.js');
 
 async function seed() {
-
     await UserModel.create({
-        name: 'Mike Shen',
-        email: 'michael.m.shen@gmail.com',
+        name: 'John Chavez',
+        email: 'jrc2855@gmail.com',
+        location: 'FL',
         isAdmin: true 
     });
 
     await UserModel.create({
-        name: 'Maurice Walsh',
-        email: 'm501842@gmail.com',
-        isAdmin: false
+        name: 'Mike Shen',
+        email: 'michael.m.shen@gmail.com',
+        location: 'WA',
+        isAdmin: true 
     });
 
     await UserModel.create({
         name: 'Steve Gant',
         email: 'sgant39@gmail.com',
+        location: 'WA',
         isAdmin: true
     });
 
     await UserModel.create({
-        name: 'Stephanie Simpson',
-        email: 'steph@aol.com',
+        name: 'Ty Aponte',
+        email: 'tyjamesramblings@gmail.com',
+        location: 'CA',
+        isAdmin: true
+    });
+
+    await UserModel.create({
+        name: 'Audrey Patterson',
+        email: 'audrey.patterson31@gmail.com',
+        searchHistory: ['backstreet boys', 'n sync', 'boy bands', 'k pop', '90s groups'],
         isAdmin: false
     });
 
