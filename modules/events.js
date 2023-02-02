@@ -8,15 +8,13 @@ async function getEvents(request, response, next) {
     let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&stateCode=${location}&apikey=${process.env.API_KEY}&keyword=${keyword}`
     let locationDataFromAxios = await axios.get(url)
     let parsedLocationData = locationDataFromAxios.data._embedded.events;
-    console.log(parsedLocationData);
     let locationData = parsedLocationData.map(eventData => new Events(eventData));
-
 
     response.status(200).send(locationData);
 
-
   } catch (error) {
     console.log(error.message)
+    next(error);
   }
 
 }
