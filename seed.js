@@ -12,9 +12,14 @@ async function seed() {
     await UserModel.create({
         name: 'Mike Shen',
         email: 'michael.m.shen@gmail.com',
-        isAdmin: false 
+        isAdmin: true 
     });
 
+    await UserModel.create({
+        name: 'Maurice Walsh',
+        email: 'm501842@gmail.com',
+        isAdmin: false
+    });
 
     await UserModel.create({
         name: 'Steve Gant',
